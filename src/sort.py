@@ -2,13 +2,13 @@ import os
 import shutil
 
 def sort():
-    src_dir = ".\\data\\frames"
+    src_dir = "frames"
 
-    train_out_dir = ".\\data\\images\\train"
-    valid_out_dir = ".\\data\\images\\valid"
+    train_out_dir = "data\\train\\images"
+    valid_out_dir = "data\\valid\\images"
 
-    train_labels_patterns = [str(f[:-4]) for f in os.listdir(".\\data\\labels\\train")]
-    valid_labels_patterns = [str(f[:-4]) for f in os.listdir(".\\data\\labels\\valid")]
+    train_labels_patterns = [str(f[:-4]) for f in os.listdir("data\\train\\labels")]
+    valid_labels_patterns = [str(f[:-4]) for f in os.listdir("data\\valid\\labels")]
 
     for f in os.listdir(src_dir):
 

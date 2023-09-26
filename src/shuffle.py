@@ -3,29 +3,35 @@ import random
 import shutil
 
 def shuffle():
-    annotated_dir = ".\\data\\obj_train_data\\w_annotation"
-    non_annotated_dir = ".\\data\\obj_train_data\\wout_annotation"
+    data_dir = "cvat_artifacts\\obj_train_data"
 
-    train_label_dir = ".\\data\\labels\\train"
-    valid_label_dir = ".\\data\\labels\\valid"
+    with_annot_dir = os.path.join(data_dir, "with_annot")
+    wout_annot_dir = os.path.join(data_dir, "wout_annot")
 
-    annotated_f_list = os.listdir(annotated_dir)
-    annotated_sampled = random.sample(annotated_f_list, len(annotated_f_list))
+    train_label_dir = "data\\train\\labels"
+    valid_label_dir = "data\\valid\\labels"
 
-    non_annotated_f_list = os.listdir(non_annotated_dir)
-    non_annotated_sampled = random.sample(non_annotated_f_list, len(non_annotated_f_list))
+    # Get list of annotated files:
+    f_list_with_annot = os.listdir(with_annot_dir)
 
-    for f in annotated_sampled[:160]:
-        shutil.move(os.path.join(annotated_dir, f), train_label_dir)
+    # Randomly sample from list:
+    with_annot_sample = random.sample(f_list_with_annot, len(f_list_with_annot))
 
-    for f in annotated_sampled[160:]:
-        shutil.move(os.path.join(annotated_dir, f), valid_label_dir)
+    f_list_wout_annot = os.listdir(wout_annot_dir)
+    wout_annot_sample = random.sample(f_list_wout_annot, len(f_list_wout_annot))
 
-    for f in non_annotated_sampled[:160]:
-        shutil.move(os.path.join(non_annotated_dir, f), train_label_dir)
+    # Copy files to training and validation labels folders:
+    for f in with_annot_sample[:160]:
+        shutil.copy(os.path.join(with_annot_dir, f), train_label_dir)
 
-    for f in non_annotated_sampled[160:len(annotated_f_list)]:
-        shutil.move(os.path.join(non_annotated_dir, f), valid_label_dir)
+    for f in with_annot_sample[160:]:
+        shutil.copy(os.path.join(with_annot_dir, f), valid_label_dir)
+
+    for f in wout_annot_sample[:160]:
+        shutil.copy(os.path.join(wout_annot_dir, f), train_label_dir)
+
+    for f in wout_annot_sample[160:len(with_annot_sample)]:
+        shutil.copy(os.path.join(wout_annot_dir, f), valid_label_dir)
 
 if __name__ == "__main__":
     shuffle()
