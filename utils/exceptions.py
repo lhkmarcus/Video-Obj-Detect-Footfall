@@ -1,6 +1,5 @@
 import sys
-from src.logger import logging
-
+from utils.logger import logging
 
 def error_msg_detail(error, detail:sys):
     """
@@ -13,7 +12,6 @@ def error_msg_detail(error, detail:sys):
                  "Line number: [{1}]\n"
                  "Error message: [{2}]").format(filename, exc_tb.tb_lineno, str(error))
     return error_msg
-    
     
 class CustomException(Exception):
     def __init__(self, error_msg, detail:sys):
