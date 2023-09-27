@@ -1,3 +1,6 @@
+lap==0.4.0
 ultralytics
 opencv-python
+filterpy==1.4.5
+scikit-image==0.17.2
 -e .
