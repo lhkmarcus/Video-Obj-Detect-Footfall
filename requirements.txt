@@ -1,6 +1,7 @@
-lap==0.4.0
 ultralytics
 opencv-python
-filterpy==1.4.5
+filterpy
+scikit-learn
 scikit-image==0.17.2
+tensorflow==2.11.0
 -e .

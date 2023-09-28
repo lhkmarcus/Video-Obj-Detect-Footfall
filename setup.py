@@ -15,7 +15,7 @@ def get_requirements(filepath:str)->List[str]:
     return requirements
 
 setup(
-    name="pneumonia_xray_classification",
+    name="video-object-detection-footfall",
     version="0.0.1",
     author="lhkmarcus",
     author_email="lim.marcus.hk@gmail.com",
